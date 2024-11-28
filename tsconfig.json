@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "outDir": "./dist",
+    },
+    "include": [
+        "data-source.ts", 
+        "api-gateway/src/**/*.ts", 
+        "auth-service/src/**/*.ts"
+    ],
+    "exclude": ["node_modules", "dist"]
+}

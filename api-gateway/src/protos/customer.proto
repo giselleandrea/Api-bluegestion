@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package customer;
+
+service CustomerService {
+    rpc CreateCustomer(CreateCustomerRequest) returns (CustomerResponse);
+    rpc GetCustomer(GetCustomerRequest) returns (CustomerDetailsResponse);
+    rpc GetCustomers(Empty) returns (CustomerListResponse);
+}
+
+message CreateCustomerRequest {
+    string nameCustomer = 1;
+    string phoneCustomer = 2;
+    string neighborhoodCustomer = 3;
+    string address = 4;
+    string email = 5;
+    int32 branchId = 6;
+}
+
+message CustomerResponse {
+    bool success = 1;
+    string message = 2;
+    Customer data = 3;
+}
+
+message GetCustomerRequest {
+    int32 customerId = 1;
+}
+
+message CustomerDetailsResponse {
+    bool success = 1;
+    Customer data = 2;
+}
+
+message CustomerListResponse {
+    bool success = 1;
+    repeated Customer data = 2;
+}
+
+message Customer {
+    int32 id = 1;
+    string nameCustomer = 2;
+    string phoneCustomer = 3;
+    string neighborhoodCustomer = 4;
+    string address = 5;
+    string email = 6;
+    int32 branchId = 7;
+    string createdAt = 8;
+}
+
+message Empty {}

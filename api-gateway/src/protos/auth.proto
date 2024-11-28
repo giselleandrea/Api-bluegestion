@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package auth;
+
+service AuthService {
+    rpc Login (LoginRequest) returns (AuthResponse);
+    rpc CreateUser (CreateUserRequest) returns (CreateUserResponse);
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2; 
+}
+
+message AuthResponse {
+    string token = 1;
+}
+
+message CreateUserRequest {
+    string name = 1;        
+    string email = 2;       
+    string password = 3;    
+    string document = 4;    
+    string typeDocument = 5;
+    int32 typeUserId = 6;   
+}
+
+message CreateUserResponse {
+    string status = 1;
+}

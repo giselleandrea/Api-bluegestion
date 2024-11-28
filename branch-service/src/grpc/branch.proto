@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package branch;
+
+service BranchService {
+    rpc CreateBranch(CreateBranchRequest) returns (BranchResponse);
+    rpc GetBranch(GetBranchRequest) returns (BranchResponse);
+    rpc GetBranches(Empty) returns (BranchListResponse);
+}
+
+message CreateBranchRequest {
+    string nameBranch = 1;
+    string phoneBranch = 2;
+    string neighborhoodBranch = 3;
+    string address = 4;
+    string nameContact = 5;
+}
+
+message BranchResponse {
+    bool success = 1;
+    string message = 2;
+    Branch data = 3;
+}
+
+message GetBranchRequest {
+    int32 branchId = 1;
+}
+
+message BranchListResponse {
+    bool success = 1;
+    string message = 2;
+    repeated Branch data = 3;
+}
+
+message Branch {
+    int32 id = 1;
+    string nameBranch = 2;
+    string phoneBranch = 3;
+    string neighborhoodBranch = 4;
+    string address = 5;
+    string nameContact = 6;
+}
+
+message Empty {}

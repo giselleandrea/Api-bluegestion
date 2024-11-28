@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package product;
+
+// Servicio principal para la gestión de productos
+service ProductService {
+    rpc CreateProduct(CreateProductRequest) returns (CreateProductResponse);
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse);
+    rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+    rpc GetProducts(Empty) returns (GetProductsResponse);
+    rpc GetCategories(Empty) returns (GetCategoriesResponse);
+}
+
+// Crear Producto
+message CreateProductRequest {
+    string nameProduct = 1;        // Nombre del producto
+    string referenceProduct = 2;   // Referencia del producto
+    double amountProduct = 3;      // Monto del producto
+    string description = 4;        // Descripción del producto
+    int32 stock = 5;               // Cantidad en stock
+    int32 categoryId = 6;          // ID de la categoría
+}
+
+message CreateProductResponse {
+    bool success = 1;
+    string message = 2;
+    Product product = 3;
+}
+
+// Actualizar Producto
+message UpdateProductRequest {
+    int32 product_id = 1;          // ID del producto
+    string nameProduct = 2;
+    string referenceProduct = 3;
+    double amountProduct = 4;
+    string description = 5;
+    int32 stock = 6;
+    int32 categoryId = 7;
+}
+
+message UpdateProductResponse {
+    bool success = 1;
+    string message = 2;
+    Product product = 3;
+}
+
+// Obtener un producto por ID
+message GetProductRequest {
+    int32 product_id = 1;          // ID del producto
+}
+
+message GetProductResponse {
+    bool success = 1;
+    string message = 2;
+    Product product = 3;
+}
+
+// Obtener todos los productos
+message GetProductsResponse {
+    repeated Product data = 1;  // Lista de productos
+}
+
+// Obtener todas las categorías
+message GetCategoriesResponse {
+    bool success = 1;
+    string message = 2;
+    repeated Category data = 3;  // Lista de categorías
+}
+
+// Producto
+message Product {
+    int32 id = 1;                 // ID del producto
+    string nameProduct = 2;       // Nombre del producto
+    string referenceProduct = 3;  // Referencia del producto
+    double amountProduct = 4;     // Monto del producto
+    string description = 5;       // Descripción del producto
+    int32 stock = 6;              // Cantidad en stock
+    Category category = 7;        // Categoría del producto
+}
+
+// Categoría
+message Category {
+    int32 id = 1;                // ID de la categoría
+    string category = 2;          // Nombre de la categoría
+}
+
+// Mensaje vacío para solicitudes sin parámetros
+message Empty {}
